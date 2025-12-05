@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor At Home - Corporate Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #14bef0;
+            --primary-dark: #0fa3d4;
+            --text-dark: #1a1a2e;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            background: #e8e8e8;
+            padding: 20px;
+        }
+
+        .presentation {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .slide {
+            width: 100%;
+            aspect-ratio: 16 / 12;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            margin-bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* SLIDE 1: TITLE SLIDE */
+        .slide-1 {
+            background: linear-gradient(135deg, var(--white) 0%, #f5f7fa 100%);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .slide-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--primary-dark) 100%);
+        }
+
+        .slide-1::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: var(--bg-light);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+
+        .title-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .title-content h1 {
+            font-size: 72px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .title-content .subtitle {
+            font-size: 32px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .title-content .tagline {
+            font-size: 20px;
+            color: var(--text-light);
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* SLIDE 2: PROJECT OVERVIEW */
+        .slide-2 {
+            background: var(--white);
+        }
+
+        .slide-2::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--primary);
+        }
+
+        .slide-header {
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-2 .slide-header::before {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .section {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border-left: 4px solid var(--primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-content {
+            font-size: 15px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* SLIDE 3: KEY FEATURES & OUTCOMES */
+        .slide-3 {
+            background: var(--white);
+            flex-direction: row;
+            padding: 50px 30px;
+        }
+
+        .slide-3::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: var(--primary-dark);
+        }
+
+        .slide-3 .slide-header {
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            margin: 0;
+        }
+
+        .columns-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .column {
+            background: var(--bg-light);
+            border-radius: 12px;
+            padding: 28px;
+            border-top: 4px solid var(--primary);
+        }
+
+        .column-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .column ul {
+            list-style: none;
+        }
+
+        .column li {
+            font-size: 13px;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            padding-left: 0;
+            line-height: 1.5;
+        }
+
+        .column li::before {
+            content: '✓ ';
+            color: var(--primary);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .slide {
+                page-break-after: always;
+                box-shadow: none;
+                border: 1px solid #ddd;
+                margin-bottom: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 30px;
+                aspect-ratio: auto;
+                min-height: 600px;
+            }
+
+            .title-content h1 {
+                font-size: 48px;
+            }
+
+            .title-content .subtitle {
+                font-size: 24px;
+            }
+
+            .slide-header {
+                font-size: 32px;
+            }
+
+            .columns-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .column {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- SLIDE 1: TITLE SLIDE -->
+        <div class="slide slide-1">
+            <div class="title-content">
+                <h1>Doctor At Home</h1>
+                <div class="subtitle">Professional Home Healthcare Services</div>
+                <div class="tagline">Healthcare Delivered to Your Doorstep</div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2: PROJECT OVERVIEW -->
+        <div class="slide slide-2">
+            <h2 class="slide-header">Project Overview</h2>
+            
+            <div class="section">
+                <div class="section-title">📌 Problem Statement</div>
+                <div class="section-content">
+                    Healthcare accessibility remains a major challenge. Long hospital wait times, travel inconvenience, and high costs create barriers to quality medical care, especially for elderly and busy professionals.
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🎯 Objective</div>
+                <div class="section-content">
+                    Deliver convenient, affordable, and professional healthcare directly to patients' homes, eliminating travel hassles and reducing wait times with verified medical professionals available 24/7.
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📝 Project Summary</div>
+                <div class="section-content">
+                    A responsive web platform connecting certified doctors and healthcare professionals for home-based medical services including consultations, nursing care, physiotherapy, lab tests, elderly care, and emergency visits with transparent pricing and insurance support.
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3: KEY FEATURES & OUTCOMES -->
+        <div class="slide slide-3">
+            <h2 class="slide-header">Key Features & Outcomes</h2>
+            
+            <div class="columns-container">
+                <!-- Features Column -->
+                <div class="column">
+                    <div class="column-title">✨ Key Features</div>
+                    <ul>
+                        <li>Online Booking System</li>
+                        <li>6+ Healthcare Services</li>
+                        <li>Verified Doctor Network</li>
+                        <li>24/7 Emergency Support</li>
+                        <li>Digital Prescriptions</li>
+                        <li>Patient Reviews & Ratings</li>
+                    </ul>
+                </div>
+
+                <!-- Technologies Column -->
+                <div class="column">
+                    <div class="column-title">🛠️ Technologies Used</div>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (Vanilla)</li>
+                        <li>Responsive Design</li>
+                        <li>Client-side Validation</li>
+                        <li>Mobile-First Approach</li>
+                        <li>SEO Optimized</li>
+                    </ul>
+                </div>
+
+                <!-- Expected Impact Column -->
+                <div class="column">
+                    <div class="column-title">📊 Expected Impact</div>
+                    <ul>
+                        <li>5000+ Happy Patients</li>
+                        <li>50+ Cities Coverage</li>
+                        <li>4.8/5 Star Rating</li>
+                        <li>2-Minute Booking</li>
+                        <li>Zero Hidden Charges</li>
+                        <li>99.9% Uptime</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

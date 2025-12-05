@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor at Home - Professional Home Healthcare Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #14bef0;
+            --primary-dark: #0fa3d4;
+            --primary-light: #3dcef5;
+            --text-dark: #1a1a2e;
+            --text-light: #6c757d;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --border-color: #e9ecef;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px 24px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-cta {
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-dark);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .trust-badges {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge-icon {
+            font-size: 28px;
+        }
+
+        .badge-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-light);
+            padding: 80px 24px;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            color: var(--text-dark);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 80px;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            font-size: 15px;
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .about-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .about-list li {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            font-size: 15px;
+            color: var(--text-dark);
+        }
+
+        .about-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 24px;
+            background: var(--bg-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 32px 24px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .service-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background: linear-gradient(135deg, rgba(20, 190, 240, 0.05) 0%, rgba(20, 190, 240, 0.02) 100%);
+            padding: 80px 24px;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .why-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .why-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--primary-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .why-item h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .why-item p {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Booking Form */
+        .booking {
+            padding: 80px 24px;
+            background: var(--bg-light);
+        }
+
+        .booking-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .booking-container h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(20, 190, 240, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-error {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #dc3545;
+        }
+
+        .form-group input.error ~ .form-error,
+        .form-group select.error ~ .form-error,
+        .form-group textarea.error ~ .form-error {
+            display: block;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--primary-dark);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 24px;
+            background: var(--bg-white);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-light);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-header {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: center;
+        }
+
+        .testimonial-avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .testimonial-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .testimonial-info p {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .testimonial-card p {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 24px;
+            background: var(--bg-light);
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            color: var(--text-dark);
+        }
+
+        .contact-item {
+            margin-bottom: 32px;
+        }
+
+        .contact-item h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .contact-item a,
+        .contact-item p {
+            font-size: 15px;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-map {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 48px 24px 24px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-column a {
+            display: block;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* WhatsApp Floating Button */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-4px) scale(1.1);
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+                margin-bottom: 16px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .booking-container {
+                padding: 32px 24px;
+            }
+
+            .trust-badges {
+                gap: 16px;
+            }
+
+            .badge-text {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .hero {
+                padding: 60px 16px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-us-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 60px 16px;
+            }
+
+            .services {
+                padding: 60px 16px;
+            }
+
+            .why-us {
+                padding: 60px 16px;
+            }
+
+            .booking {
+                padding: 60px 16px;
+            }
+
+            .testimonials {
+                padding: 60px 16px;
+            }
+
+            .contact {
+                padding: 60px 16px;
+            }
+
+            footer {
+                padding: 40px 16px 20px;
+            }
+
+            .footer-content {
+                gap: 24px;
+            }
+
+            .whatsapp-btn {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Doctor At Home</a>
+            <ul class="nav-menu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#booking">Book Appointment</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <button class="nav-cta" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">Book Now</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Doctor Care at Your Doorstep</h1>
+        <p>Certified doctors and medical professionals visiting your home for treatment. Affordable, convenient, and trusted healthcare.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">Book Appointment</button>
+            <button class="btn btn-secondary" onclick="alert('Call: +91-XXXXXXXXXX')">Call Now</button>
+        </div>
+        <div class="trust-badges">
+            <div class="badge">
+                <div class="badge-icon">✓</div>
+                <div class="badge-text">Certified Doctors</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">🏆</div>
+                <div class="badge-text">5000+ Happy Patients</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">⏰</div>
+                <div class="badge-text">24/7 Available</div>
+            </div>
+            <div class="badge">
+                <div class="badge-icon">💳</div>
+                <div class="badge-text">Secure Payment</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="section-container">
+            <h2 class="section-title">About Our Mission</h2>
+            <div class="about-content">
+                <div class="about-image">👨‍⚕️</div>
+                <div class="about-text">
+                    <h3>Healthcare Delivered to Your Home</h3>
+                    <p>We believe healthcare should be accessible, convenient, and affordable for everyone. Our mission is to bring qualified medical professionals directly to your home, eliminating travel hassles and reducing wait times.</p>
+                    <ul class="about-list">
+                        <li>Experienced medical professionals with years of expertise</li>
+                        <li>Quick response time and flexible scheduling</li>
+                        <li>Comprehensive health consultations and treatments</li>
+                        <li>Personalized care in the comfort of your home</li>
+                        <li>Transparent and competitive pricing</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🩺</div>
+                    <h4>Doctor Consultation</h4>
+                    <p>Expert medical advice from certified doctors for all health concerns, delivered at your convenience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💉</div>
+                    <h4>Nursing Care</h4>
+                    <p>Professional nursing services including wound care, injections, and post-operative support.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤸</div>
+                    <h4>Physiotherapy</h4>
+                    <p>Customized rehabilitation and physical therapy sessions conducted by licensed physiotherapists.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🧪</div>
+                    <h4>Lab Tests at Home</h4>
+                    <p>Convenient blood tests and diagnostic sampling with results delivered directly to you.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">👴</div>
+                    <h4>Elderly Care</h4>
+                    <p>Specialized care for senior citizens with chronic disease management and mobility assistance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚨</div>
+                    <h4>24/7 Emergency Visit</h4>
+                    <p>Round-the-clock emergency medical response for urgent health situations and critical care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-us" id="why">
+        <div class="section-container">
+            <h2 class="section-title">Why Choose Doctor At Home?</h2>
+            <div class="why-us-grid">
+                <div class="why-item">
+                    <div class="why-icon">⚡</div>
+                    <h4>Quick Booking</h4>
+                    <p>Schedule appointments in just 2 minutes with our streamlined booking system.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">💰</div>
+                    <h4>Affordable Rates</h4>
+                    <p>Transparent pricing with no hidden charges. Insurance coverage available.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🎯</div>
+                    <h4>Verified Doctors</h4>
+                    <p>All professionals are verified, experienced, and registered with medical boards.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🛡️</div>
+                    <h4>Safe & Secure</h4>
+                    <p>Your privacy is our priority. All data is encrypted and securely stored.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">📱</div>
+                    <h4>Easy Follow-Up</h4>
+                    <p>Digital prescriptions, test reports, and convenient follow-up consultations.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">⭐</div>
+                    <h4>Trusted Service</h4>
+                    <p>Rated 4.8/5 with over 5000+ satisfied patients across the city.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section class="booking" id="booking">
+        <div class="section-container">
+            <div class="booking-container">
+                <h2>Book Your Appointment</h2>
+                <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <span class="form-error">Please enter your name</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your 10-digit phone number" pattern="[0-9]{10}" required>
+                        <span class="form-error">Please enter a valid 10-digit phone number</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" placeholder="Enter your complete address" required>
+                        <span class="form-error">Please enter your address</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="service">Service Required</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="Doctor Consultation">Doctor Consultation</option>
+                            <option value="Nursing Care">Nursing Care</option>
+                            <option value="Physiotherapy">Physiotherapy</option>
+                            <option value="Lab Tests">Lab Tests at Home</option>
+                            <option value="Elderly Care">Elderly Care</option>
+                            <option value="Emergency Visit">24/7 Emergency Visit</option>
+                        </select>
+                        <span class="form-error">Please select a service</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Preferred Date</label>
+                        <input type="date" id="date" name="date" required>
+                        <span class="form-error">Please select a date</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Preferred Time</label>
+                        <select id="time" name="time" required>
+                            <option value="">Select a time</option>
+                            <option value="08:00 AM">08:00 AM</option>
+                            <option value="09:00 AM">09:00 AM</option>
+                            <option value="10:00 AM">10:00 AM</option>
+                            <option value="11:00 AM">11:00 AM</option>
+                            <option value="02:00 PM">02:00 PM</option>
+                            <option value="03:00 PM">03:00 PM</option>
+                            <option value="04:00 PM">04:00 PM</option>
+                            <option value="05:00 PM">05:00 PM</option>
+                        </select>
+                        <span class="form-error">Please select a time</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Additional Notes (Optional)</label>
+                        <textarea id="notes" name="notes" placeholder="Describe your symptoms or any additional information..."></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Confirm Appointment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-container">
+            <h2 class="section-title">What Patients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👨</div>
+                        <div class="testimonial-info">
+                            <h4>Rajesh Kumar</h4>
+                            <p>Mumbai</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Amazing service! The doctor came on time and was very professional. Saved me a trip to the hospital. Highly recommended!"</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👩</div>
+                        <div class="testimonial-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Pune</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"My mother is 75 and has mobility issues. This service has been a lifesaver for us. The nurses are caring and efficient."</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">👨</div>
+                        <div class="testimonial-info">
+                            <h4>Amit Patel</h4>
+                            <p>Bangalore</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Very convenient for busy professionals like me. The online booking is easy and the staff is courteous. Worth every rupee!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-item">
+                        <h4>📞 Phone</h4>
+                        <a href="tel:+919876543210">+91-9876-543-210</a>
+                        <p>Available 24/7 for emergency calls</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4>📧 Email</h4>
+                        <a href="mailto:support@doctorhome.com">support@doctorhome.com</a>
+                        <p>Response within 2 hours</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4>💬 WhatsApp</h4>
+                        <a href="https://wa.me/919876543210">+91-9876-543-210</a>
+                        <p>Quick support via WhatsApp</p>
+                    </div>
+
+                    <div class="contact-item">
+                        <h4>📍 Address</h4>
+                        <p>Doctor At Home Headquarters<br>Mumbai, India</p>
+                    </div>
+                </div>
+
+                <div class="contact-map">
+                    🗺️ Service Coverage Map<br><small>Available in 50+ cities across India</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Company</h4>
+                <a href="#">About Us</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Press</a>
+            </div>
+            <div class="footer-column">
+                <h4>Services</h4>
+                <a href="#services">Doctor Consultation</a>
+                <a href="#services">Nursing Care</a>
+                <a href="#services">Physiotherapy</a>
+                <a href="#services">Lab Tests</a>
+            </div>
+            <div class="footer-column">
+                <h4>Legal</h4>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Disclaimer</a>
+                <a href="#">Refund Policy</a>
+            </div>
+            <div class="footer-column">
+                <h4>Support</h4>
+                <a href="#contact">Contact Us</a>
+                <a href="#">FAQ</a>
+                <a href="#">Help Center</a>
+                <a href="#">Book Now</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Doctor At Home. All rights reserved.</p>
+            <p>Certified Medical Services | Trusted Healthcare Provider</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/919876543210" class="whatsapp-btn" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+
+    <script>
+        // Form Validation
+        function validateForm(form) {
+            let isValid = true;
+            const inputs = form.querySelectorAll('input, select, textarea');
+            
+            inputs.forEach(input => {
+                input.classList.remove('error');
+                
+                if (input.hasAttribute('required') && !input.value.trim()) {
+                    input.classList.add('error');
+                    isValid = false;
+                }
+                
+                if (input.id === 'phone' && input.value.trim() && !/^[0-9]{10}$/.test(input.value)) {
+                    input.classList.add('error');
+                    isValid = false;
+                }
+                
+                if (input.id === 'date' && input.value) {
+                    const selectedDate = new Date(input.value);
+                    const today = new Date();
+                    today.setHours(0, 0, 0, 0);
+                    if (selectedDate < today) {
+                        input.classList.add('error');
+                        isValid = false;
+                    }
+                }
+            });
+            
+            return isValid;
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            if (validateForm(event.target)) {
+                const formData = new FormData(event.target);
+                const data = Object.fromEntries(formData);
+                
+                alert(`Appointment Booked Successfully!\n\nName: ${data.name}\nPhone: ${data.phone}\nService: ${data.service}\nDate: ${data.date}\nTime: ${data.time}\n\nWe'll confirm via WhatsApp shortly.`);
+                event.target.reset();
+            } else {
+                alert('Please fill in all required fields correctly.');
+            }
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Menu Toggle (Mobile)
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (menuToggle) {
+            menuToggle.addEventListener('click', function() {
+                navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Set minimum date to today in date picker
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.min = today;
+        }
+    </script>
+</body>
+</html>
