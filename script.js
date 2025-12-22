@@ -1,4 +1,9 @@
 /* ===============================
+   CONFIG
+================================ */
+const API_BASE = "https://doctor-cuure-backend.onrender.com";
+
+/* ===============================
    FORM VALIDATION
 ================================ */
 function validateForm(form) {
@@ -38,14 +43,8 @@ function validateForm(form) {
 }
 
 /* ===============================
-   DATE & TIME HELPERS
+   TIME HELPERS
 ================================ */
-
-// Convert DD-MM-YYYY → YYYY-MM-DD
-function toISODate(ddmmyyyy) {
-  const [dd, mm, yyyy] = ddmmyyyy.split("-");
-  return `${yyyy}-${mm}-${dd}`;
-}
 
 // "08:00 AM" → "08:00"
 function convertTo24Hour(timeStr) {
@@ -86,10 +85,12 @@ async function loadAvailableSlots(dateISO) {
 
   try {
     const res = await fetch(
-      `http://127.0.0.1:5000/available-slots?date=${dateISO}`
+      `${API_BASE}/available-slots?date=${dateISO}`
     );
-    const data = await res.json();
 
+    if (!res.ok) throw new Error("Failed to fetch slots");
+
+    const data = await res.json();
     const slots = data.slots || [];
 
     timeSelect.innerHTML = "";
@@ -110,7 +111,7 @@ async function loadAvailableSlots(dateISO) {
     });
 
   } catch (err) {
-    console.error(err);
+    console.error("Slot fetch error:", err);
     timeSelect.innerHTML = '<option value="">Server error</option>';
   }
 }
@@ -133,30 +134,25 @@ async function handleFormSubmit(event) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData);
 
- const payload = {
-  name: data.name,
-  date: data.date,        // DO NOT CONVERT
-  time: convertTo24Hour(data.time),
-  reason: `Service: ${data.service}`
-};
-
+  const payload = {
+    name: data.name,
+    phone: data.phone,
+    address: data.address,
+    service: data.service,
+    date: data.date,
+    time: convertTo24Hour(data.time),
+    notes: data.notes || ""
+  };
 
   statusMsg.textContent = "Booking your appointment...";
   statusMsg.style.color = "#0fa3d4";
 
-const API_BASE = "https://doctor-cuure-backend.onrender.com";
-
-try {
-  const res = await fetch(
-    `${API_BASE}/create-appointment`,
-    {
+  try {
+    const res = await fetch(`${API_BASE}/create-appointment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
-    }
-  );
-
-
+    });
 
     const result = await res.json();
 
@@ -174,11 +170,10 @@ try {
       statusMsg.style.color = "#dc3545";
     }
   } catch (err) {
-    console.error(err);
+    console.error("Booking error:", err);
     statusMsg.textContent =
       "❌ Could not connect to booking server.";
     statusMsg.style.color = "#dc3545";
-    alert("Make sure backend (python app.py) is running.");
   }
 }
 
@@ -192,10 +187,9 @@ if (bookingForm) {
 
 const dateInput = document.getElementById("date");
 if (dateInput) {
- dateInput.addEventListener("change", e => {
-  loadAvailableSlots(e.target.value); // already YYYY-MM-DD
-});
-
+  dateInput.addEventListener("change", e => {
+    loadAvailableSlots(e.target.value); // YYYY-MM-DD
+  });
 }
 
 /* ===============================
