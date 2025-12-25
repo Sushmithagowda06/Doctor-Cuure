@@ -4,6 +4,15 @@
 const API_BASE = "https://doctor-cuure-backend.onrender.com";
 
 /* ===============================
+   ELEMENT REFERENCES
+================================ */
+const bookingForm = document.getElementById("bookingForm");
+const doctorSelect = document.getElementById("doctor");
+const dateInput = document.getElementById("date");
+const timeSelect = document.getElementById("time");
+const statusMsg = document.getElementById("status-msg");
+
+/* ===============================
    FORM VALIDATION
 ================================ */
 function validateForm(form) {
@@ -71,73 +80,80 @@ function toAmPmLabel(time24) {
 }
 
 /* ===============================
-   LOAD AVAILABLE SLOTS
+   SLOT LOADING (DOCTOR + DATE)
 ================================ */
-async function loadAvailableSlots(dateISO) {
-  const timeSelect = document.getElementById("time");
+dateInput.addEventListener("change", async () => {
+  const doctor = doctorSelect.value;
+  const date = dateInput.value;
 
-  if (!dateISO) {
-    timeSelect.innerHTML = '<option value="">Select a date first</option>';
+  if (!doctor || !date) {
+    timeSelect.innerHTML =
+      '<option value="">Select doctor & date first</option>';
     return;
   }
 
-  timeSelect.innerHTML = '<option value="">Checking availability...</option>';
+  timeSelect.innerHTML = '<option value="">Loading slots...</option>';
 
   try {
     const res = await fetch(
-      `${API_BASE}/available-slots?date=${dateISO}`
+      `${API_BASE}/available-slots?date=${date}&doctor=${doctor}`
     );
 
     if (!res.ok) throw new Error("Failed to fetch slots");
 
     const data = await res.json();
-    const slots = data.slots || [];
 
-    timeSelect.innerHTML = "";
+    timeSelect.innerHTML = '<option value="">Select a time</option>';
 
-    if (slots.length === 0) {
+    if (!data.slots || data.slots.length === 0) {
       timeSelect.innerHTML =
         '<option value="">No slots available</option>';
       return;
     }
 
-    timeSelect.innerHTML = '<option value="">Select a time</option>';
-
-    slots.forEach(time24 => {
+    data.slots.forEach(slot => {
       const option = document.createElement("option");
-      option.value = toAmPmLabel(time24);
-      option.textContent = toAmPmLabel(time24);
+      option.value = slot;
+      option.textContent = toAmPmLabel(slot);
       timeSelect.appendChild(option);
     });
 
   } catch (err) {
     console.error("Slot fetch error:", err);
-    timeSelect.innerHTML = '<option value="">Server error</option>';
+    timeSelect.innerHTML =
+      '<option value="">Server error</option>';
   }
-}
+});
+
+/* ===============================
+   RESET SLOTS WHEN DOCTOR CHANGES
+================================ */
+doctorSelect.addEventListener("change", () => {
+  timeSelect.innerHTML =
+    '<option value="">Select date first</option>';
+});
 
 /* ===============================
    FORM SUBMISSION
 ================================ */
-async function handleFormSubmit(event) {
+bookingForm.addEventListener("submit", async (event) => {
   event.preventDefault();
 
-  const form = event.target;
-  const statusMsg = document.getElementById("status-msg");
-
-  if (!validateForm(form)) {
-    statusMsg.textContent = "❌ Please correct the highlighted fields.";
+  if (!validateForm(bookingForm)) {
+    statusMsg.textContent =
+      "❌ Please correct the highlighted fields.";
     statusMsg.style.color = "#dc3545";
     return;
   }
 
-  const formData = new FormData(form);
+  const formData = new FormData(bookingForm);
   const data = Object.fromEntries(formData);
 
   const payload = {
     name: data.name,
     phone: data.phone,
     address: data.address,
+    doctor: data.doctor,
     service: data.service,
     date: data.date,
     time: convertTo24Hour(data.time),
@@ -158,39 +174,25 @@ async function handleFormSubmit(event) {
 
     if (result.status === "success") {
       statusMsg.textContent =
-        "✅ Appointment booked and added to Google Calendar!";
+        "✅ Appointment booked successfully!";
       statusMsg.style.color = "#198754";
       alert("Appointment booked successfully!");
-      form.reset();
-      document.getElementById("time").innerHTML =
+      bookingForm.reset();
+      timeSelect.innerHTML =
         '<option value="">Select a time</option>';
     } else {
       statusMsg.textContent =
         "❌ " + (result.error || "Slot not available.");
       statusMsg.style.color = "#dc3545";
     }
+
   } catch (err) {
     console.error("Booking error:", err);
     statusMsg.textContent =
       "❌ Could not connect to booking server.";
     statusMsg.style.color = "#dc3545";
   }
-}
-
-/* ===============================
-   EVENT LISTENERS
-================================ */
-const bookingForm = document.getElementById("bookingForm");
-if (bookingForm) {
-  bookingForm.addEventListener("submit", handleFormSubmit);
-}
-
-const dateInput = document.getElementById("date");
-if (dateInput) {
-  dateInput.addEventListener("change", e => {
-    loadAvailableSlots(e.target.value); // YYYY-MM-DD
-  });
-}
+});
 
 /* ===============================
    SCROLL TO TOP

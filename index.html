@@ -41,11 +41,10 @@
 
     <!-- Hero Section -->
    <section class="hero">
+  <h1>Doctor Care at Your Doorstep</h1>
   <div class="hero-image-top">
     <img src="images/medicare.jpeg" alt="Doctor at home">
   </div>
-
-  <h1>Doctor Care at Your Doorstep</h1>
 
   <p>
     Certified doctors and medical professionals visiting your home for treatment.
@@ -242,6 +241,16 @@
                         <input type="text" id="address" name="address" placeholder="Enter your complete address" required>
                         <span class="form-error">Please enter your address</span>
                     </div>
+                    <div class="form-group">
+    <label for="doctor">Select Doctor</label>
+    <select id="doctor" name="doctor" required>
+        <option value="">Select a doctor</option>
+        <option value="rohit">Dr Rohit</option>
+        <option value="shreyas">Dr Shreyas</option>
+    </select>
+    <span class="form-error">Please select a doctor</span>
+</div>
+
 
                     <div class="form-group">
                         <label for="service">Service Required</label>
